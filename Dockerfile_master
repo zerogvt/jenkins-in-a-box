@@ -30,6 +30,5 @@ EXPOSE 22 ${jenkins_port}
 
 # start up jenkins and let an open end command 
 # to keep container alive (also handy status inspection)
-CMD /bin/bash 
-#service jenkins start && tail -f /var/log/jenkins
+CMD service jenkins start && tail -f /var/log/jenkins
  
