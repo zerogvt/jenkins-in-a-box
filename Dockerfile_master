@@ -1,15 +1,33 @@
 FROM ubuntu:16.04
 MAINTAINER zerogvt
+# next vars should be in our env
+ARG jenkins_port
+ARG jenkins_user
+ARG jenkins_pass
+
+RUN echo ">>>>>>>>>>>>>>> $jenkins_port"
 RUN apt-get -y update
+
+# install ansible from source
 RUN apt-get install -y python-yaml python-jinja2 git
 RUN git clone http://github.com/ansible/ansible.git --recursive /tmp/ansible
 WORKDIR /tmp/ansible
 ENV PATH /tmp/ansible/bin:/sbin:/usr/sbin:/usr/bin
 ENV ANSIBLE_LIBRARY /tmp/ansible/library
 ENV PYTHONPATH /tmp/ansible/lib:$PYTHON_PATH
+
+# get our build context off our gh repo
 RUN git clone http://github.com/zerogvt/muc_adn.git /tmp/muc_adn
 ADD inventory /etc/ansible/hosts
 WORKDIR /tmp/muc_adn
-RUN ansible-galaxy install geerlingguy.jenkins -p ./roles/ && ansible-playbook configure-ci-server.yml -c local
-EXPOSE 22 3000
-ENTRYPOINT [“/usr/bin/foo”]
+# let ansible do the heavy lifting of installing/setting up jenkins 
+RUN ansible-galaxy install geerlingguy.jenkins -p ./roles/ && \
+    ansible-playbook configure-ci-server.yml -c local
+    
+# expose 22 so we can ssh and inspect...
+# and 8181 is our jenkins port (TODO make this a var) 
+EXPOSE 22 ${DOCKFILE_JENKINS_PORT}
+
+# start up jenkins and let an open end command 
+# to keep container alive (also handy status inspection)
+CMD service jenkins start && tail -f /var/log/jenkins/jenkins.log

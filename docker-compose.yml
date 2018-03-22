@@ -1,0 +1,15 @@
+version: '3'
+services:
+  jenkins:
+    env_file: .env
+    build: 
+      context: .
+      dockerfile: Dockerfile_master
+      args:
+        jenkins_port: ${JENKINS_PORT}
+        jenkins_user: ${JENKINS_USER}
+        jenkins_pass: ${JENKINS_PASS}
+    image: zerogvt/jenkins:v1
+    ports:
+      - "${JENKINS_PORT}:${JENKINS_HOST_PORT}"
+

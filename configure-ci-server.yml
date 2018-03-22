@@ -2,6 +2,11 @@
 - name: Configure CI server
   hosts: ci-server
   sudo: True
+  vars:
+    jenkins_http_port: 8181
+    #TODO - set nxt 2 
+    jenkins_admin_username: admin
+    jenkins_admin_password: admin
   roles:
     - geerlingguy.java
     - geerlingguy.jenkins
