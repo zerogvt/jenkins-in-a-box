@@ -5,14 +5,17 @@ ARG user_name=jenkins
 ARG user_pass=openup
 
 RUN apt-get -y update && \
-    apt-get -y install sysv-rc-conf && \
-    sysv-rc-conf ssh on && \
+    apt-get -y install ssh && \
+    apt-get -y install sudo && \
     useradd -ms /bin/bash ${user_name} && \
-    echo "${user_name}:${user_pass}" | chpasswd
+    echo "${user_name}:${user_pass}" | chpasswd && \
+    adduser ${user_name} sudo && \
+    echo "${user_name} ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 USER ${user_name}
 WORKDIR /home/${user_name}
 # expose 22 so we can ssh in
 EXPOSE 22
 #wait for jenkins machine to connect to us
-CMD /bin/bash
+CMD sudo service ssh start && /bin/bash
+
  
