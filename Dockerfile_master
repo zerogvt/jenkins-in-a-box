@@ -22,13 +22,14 @@ WORKDIR /tmp/muc_adn
 
 # let ansible do the heavy lifting of installing/setting up jenkins 
 RUN ansible-galaxy install geerlingguy.jenkins -p ./roles/ && \
-    ansible-playbook configure-ci-server.yml -c local
-    
+    ansible-galaxy install flyapen.jenkins -p ./roles/ && \
+    ansible-playbook jenkins_ansible.yml -i inventory -c local --extra-vars "jenkins_http_port=${jenkins_port}"
+
 # expose 22 so we can ssh and inspect...
-# and 8181 is our jenkins port 
+# and our jenkins port 
 EXPOSE 22 ${jenkins_port}
 
 # start up jenkins and let an open end command 
 # to keep container alive (also handy status inspection)
-CMD service jenkins start && tail -f /var/log/jenkins
+CMD service jenkins start && tail -f /var/log/jenkins/jenkins.log
  

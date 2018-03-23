@@ -1,15 +1,16 @@
 version: '3'
 services:
   jenkins:
-    env_file: .env
+    env_file: jenkins.env
     build: 
       context: .
       dockerfile: Dockerfile_master
       args:
-        jenkins_port: ${JENKINS_PORT}
-        jenkins_user: ${JENKINS_USER}
-        jenkins_pass: ${JENKINS_PASS}
+        jenkins_port: 8180
+        jenkins_host_port: 8182
+        jenkins_user: vas
+        jenkins_pass: vas
     image: zerogvt/jenkins:v1
     ports:
-      - "${JENKINS_PORT}:${JENKINS_HOST_PORT}"
+      - "8180:8182"
 
