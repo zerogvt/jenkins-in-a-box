@@ -20,7 +20,8 @@ RUN git clone http://github.com/zerogvt/muc_adn.git /tmp/muc_adn
 ADD inventory /etc/ansible/hosts
 WORKDIR /tmp/muc_adn
 
-# let ansible do the heavy lifting of installing/setting up jenkins 
+# let ansible do the heavy lifting of installing/setting up jenkins
+RUN ls -la
 RUN ansible-galaxy install geerlingguy.jenkins -p ./roles/ && \
     ansible-galaxy install flyapen.jenkins -p ./roles/ && \
     ansible-playbook jenkins-ansible.yml -i inventory -c local
