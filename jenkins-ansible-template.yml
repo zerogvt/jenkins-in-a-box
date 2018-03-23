@@ -1,0 +1,13 @@
+---
+- name: Configure CI server
+  hosts: jenkins
+  become: True
+  vars:
+    # pass through cli
+    jenkins_http_port: ${JENKINS_PORT}
+    jenkins_admin_username: ${JENKINS_USER}
+    jenkins_admin_password: ${JENKINS_PASS}
+    jenkins_hostname: 0.0.0.0
+  roles:
+    - geerlingguy.java
+    - geerlingguy.jenkins
