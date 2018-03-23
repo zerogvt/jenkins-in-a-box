@@ -1,5 +1,4 @@
 ---
-kklkkk
 - name: Configure CI server
   hosts: jenkins
   become: True
