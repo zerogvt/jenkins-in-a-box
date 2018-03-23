@@ -12,5 +12,5 @@ services:
         jenkins_pass: ${JENKINS_PASS}
     image: zerogvt/jenkins:v1
     ports:
-      - "${JENKINS_PORT}:${JENKINS_HOST_PORT}"
+      - "${JENKINS_HOST_PORT}:${JENKINS_PORT}"
 

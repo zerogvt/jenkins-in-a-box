@@ -12,5 +12,5 @@ services:
         jenkins_pass: vas
     image: zerogvt/jenkins:v1
     ports:
-      - "8180:8182"
+      - "8182:8180"
 

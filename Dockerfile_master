@@ -24,8 +24,6 @@ WORKDIR /tmp/muc_adn
 RUN ansible-galaxy install geerlingguy.jenkins -p ./roles/ && \
     ansible-galaxy install flyapen.jenkins -p ./roles/ && \
     ansible-playbook jenkins-ansible.yml -i inventory -c local
-# next doesn't work - jenkins role goes bananas
-# --extra-vars "jenkins_http_port=${jenkins_port}"
 
 # expose 22 so we can ssh and inspect...
 # and our jenkins port 
