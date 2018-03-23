@@ -14,3 +14,11 @@ services:
     ports:
       - "${JENKINS_HOST_PORT}:${JENKINS_PORT}"
 
+  nodes:
+    build: 
+      context: .
+      dockerfile: Dockerfile_node
+    image: zerogvt/node:v1
+    ports:
+      - "2222:22"
+
