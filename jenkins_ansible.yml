@@ -7,7 +7,7 @@
     #jenkins_http_port, jenkins_admin_username, jenkins_admin_password
     jenkins_hostname: 0.0.0.0
   pre_tasks:
-    include: java-8.yml
+    - include: java-8.yml
   roles:
     - geerlingguy.java
     - geerlingguy.jenkins
