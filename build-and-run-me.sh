@@ -16,6 +16,4 @@ rm -rf slave_2.xml; export SLAVE_NAME=${SLAVE_2_NAME}; envsubst < "slave-templat
 
 
 docker-compose build
-docker-compose up
-
-
+docker-compose up --force-recreate
