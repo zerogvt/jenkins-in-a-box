@@ -1,3 +1,8 @@
 roles/**
 *.retry
 .vagrant/**
+/docker-compose.yml
+/jenkins-ansible.yml
+/kk.html
+/post_data
+/post_data.json

@@ -3,11 +3,14 @@
   hosts: jenkins
   become: True
   vars:
-    # pass through cli
+    # injected via ENV_SUBTITUTION
     jenkins_http_port: ${JENKINS_PORT}
     jenkins_admin_username: ${JENKINS_USER}
     jenkins_admin_password: ${JENKINS_PASS}
+    slave_1_name: ${SLAVE_1_NAME}
+    slave_2_name: ${SLAVE_2_NAME}
     jenkins_hostname: 0.0.0.0
+    jenkins_package_state: latest
   roles:
     - geerlingguy.java
     - geerlingguy.jenkins

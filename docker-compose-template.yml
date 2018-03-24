@@ -1,33 +1,52 @@
 version: '3'
+volumes:
+  shared-data:
+
 services:
   jenkins:
     env_file: jenkins.env
     build: 
       context: .
       dockerfile: Dockerfile_master
+      # args injected via ENV_SUBTITUTION
       args:
         jenkins_port: ${JENKINS_PORT}
         jenkins_host_port: ${JENKINS_HOST_PORT}
         jenkins_user: ${JENKINS_USER}
         jenkins_pass: ${JENKINS_PASS}
+        slave_1_name: ${SLAVE_1_NAME}
+        slave_2_name: ${SLAVE_2_NAME}
     image: zerogvt/jenkins:v1
     ports:
       - "${JENKINS_HOST_PORT}:${JENKINS_PORT}"
+    volumes:
+      - shared-data:/var/cache/jenkins/war/WEB-INF/lib
 
   slave_1:
     build: 
       context: .
       dockerfile: Dockerfile_node
+      args:
+        jenkins_host_port: ${JENKINS_HOST_PORT}
+        slave_name: ${SLAVE_1_NAME} 
     image: zerogvt/jenkins_slave:v1
     tty: true
     ports:
-      - "2222:22"
+      - "${SLAVE_1_SSH}:22"
+    volumes:
+      - shared-data:/home/jenkins/shared-data
 
   slave_2:
     build: 
       context: .
       dockerfile: Dockerfile_node
+      args:
+        jenkins_host_port: ${JENKINS_HOST_PORT}
+        slave_name: ${SLAVE_2_NAME} 
     image: zerogvt/jenkins_slave:v1
     tty: true
     ports:
-      - "2223:22"
+      - "${SLAVE_2_SSH}:22"
+    volumes:
+      - shared-data:/home/jenkins/shared-data
+      

@@ -4,6 +4,8 @@ MAINTAINER zerogvt
 ARG jenkins_port
 ARG jenkins_user
 ARG jenkins_pass
+ARG slave_1_name
+ARG slave_2_name
 ARG ansible_yml=jenkins-ansible.yml
 
 RUN apt-get -y update
@@ -27,6 +29,9 @@ RUN ls -la .
 RUN ansible-galaxy install geerlingguy.jenkins -p ./roles/ && \
     ansible-galaxy install flyapen.jenkins -p ./roles/ && \
     ansible-playbook ${ansible_yml} -i inventory -c local
+
+ADD slave_1.xml /var/lib/jenkins/nodes/${slave_1_name}/config.xml
+ADD slave_2.xml /var/lib/jenkins/nodes/${slave_2_name}/config.xml
 
 # expose 22 so we can ssh and inspect...
 # and our jenkins port 
