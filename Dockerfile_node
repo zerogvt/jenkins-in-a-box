@@ -4,11 +4,17 @@ MAINTAINER zerogvt
 ARG user_name=jenkins
 ARG user_pass=jenkins
 ARG slave_name
-ARG jenkins_host_port
+ARG jenkins_port
+ARG jnlp_user
+ARG jnlp_pass
+ARG time_wait
+
 
 RUN apt-get -y update && \
-    apt-get -y install default-jre && \
+	apt-get -y install openjdk-8-jdk && \
+    apt-get -y install openjdk-8-jre && \
     apt-get -y install ssh && \
+    apt-get -y install curl && \
     apt-get -y install sudo && \
     useradd -ms /bin/bash ${user_name} && \
     echo "${user_name}:${user_pass}" | chpasswd && \
@@ -16,9 +22,14 @@ RUN apt-get -y update && \
     echo "${user_name} ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 USER ${user_name}
 WORKDIR /home/${user_name}
-RUN echo ${slave_name} > my.name && echo "localhost:${jenkins_host_port}" > my.jenkins
+RUN echo ${slave_name} > my.name && \
+    echo "jenkins:${jenkins_port}" > my.jenkins && \
+    echo "${jnlp_user}:${jnlp_pass}" > my.secret && \
+    echo ${time_wait} > my.wait
+    
 # expose 22 so we can ssh in
 EXPOSE 22
 #wait for jenkins machine to warm up - then connect
-CMD sleep 5 && java -jar shared-data/remoting-3.18.jar -jnlpUrl http://$(cat my.jenkins)/computer/$(cat my.name)/slave-agent.jnlp -workDir "/home/jenkins"
-#sudo service ssh start && /bin/bash
+CMD sleep $(cat my.wait) && \
+    cp shared-data/remoting-3.18.jar agent.jar && \
+    java -jar agent.jar -jnlpUrl http://$(cat my.jenkins)/computer/$(cat my.name)/slave-agent.jnlp -workDir "/home/jenkins" -jnlpCredentials $(cat my.secret)
