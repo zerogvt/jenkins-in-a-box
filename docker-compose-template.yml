@@ -34,7 +34,7 @@ services:
         jnlp_user: ${JENKINS_USER}
         jnlp_pass: ${JENKINS_PASS}
         time_wait: 1
-    image: zerogvt/jenkins_slave:v1
+    image: zerogvt/jenkins_slave:${SLAVE_1_NAME}
     tty: true
     volumes:
       - shared-data:/home/jenkins/shared-data
@@ -51,7 +51,7 @@ services:
         jnlp_user: ${JENKINS_USER}
         jnlp_pass: ${JENKINS_PASS}
         time_wait: 10
-    image: zerogvt/jenkins_slave:v1
+    image: zerogvt/jenkins_slave:${SLAVE_2_NAME}
     tty: true
     volumes:
       - shared-data:/home/jenkins/shared-data
