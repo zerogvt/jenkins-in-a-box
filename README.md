@@ -1,7 +1,7 @@
 # Containerised Continuous Integration
 ### A proof of concept involving jenkins, ansible, docker and a bunny and its spaceship
 
-(Reading documentation is a bore isn't it? The kind of I-d-rather-try-catching-flies-with-chopsticks bore. Maybe that because documentation is usually written in the form of shopping list and people don't even read them while shopping...I know, we're hopeless. But I also know that people love to tell and listen to stories. Things with start, middle and end. So, let's try this for a change...)
+(Reading documentation is a bore isn't it? The kind of I-d-rather-try-catching-flies-with-chopsticks bore. Maybe that's because documentation is usually written in the form of shopping list and people don't even read them while shopping...I know, we're hopeless. But I also know that people love to tell and listen to stories. Things with a beginning, middle and end. So, let's try this for a change...)
 
 ## Things. Happening.
 So, the other day while I was very actively focusing in breathing and keeping alive in general I had this strange fella popping out of nowhere on my desk. Right next to my coffee mug. Puff! It looked like a bunny wearing a fish-bowl and it was waving its hands frantically to get my attention. I don't wanna waste your time with boring details of how it ended up there and such but to cut to the chase it needed help with next problem.
@@ -28,6 +28,13 @@ This is the guy that will orchestrate our little act. You can tell him to create
 ### Ignition...
 ...after toiling away for a couple of days (during which the Bunny was merely chewing away carrots and reading the papers) I had a makeshift mad-maxy machinery that I hoped would be fit. I crafted the whole thing on an **Ubuntu 16.04 hosting Docker version 17.12.1-ce and docker-compose version 1.20.0**  (it might be a good idea to provide a Vagrant VM to run this (VMs, VMs on VMs, isn't this like "turtles all the way down"?)). 
 
-So...if you want to play around check out this repo and cd into the dir where you checked out. The ignition key is script `build-and-run-me.sh` and you fire it up simply by `./build-and-run-me.sh`. Environment specifics live in file `jenkins.env`, you might want to change JENKINS_USER and PASS (these are the user and password to log in the spun up jenkins) or JENKINS_HOST_PORT which is the port on your real computer where spun up Jenkins will serve up his Web site (make sure you use a port that's not already used - 8181 is usually a safe option). 
+So...if you want to play around check out this repo and cd into the dir where you checked out. The ignition key is script `build-and-run-me.sh` and you fire it up simply by `./build-and-run-me.sh`. Environment specifics live in file `jenkins.env`, you might want to change JENKINS_USER and PASS (these are the user and password to log in the spun up jenkins) or JENKINS_HOST_PORT which is the port on your real computer where spun up Jenkins will serve up his Web site (make sure you use a port that's not already used - 8181 is usually a safe option). If all goes well (it takes a while to cook all these up especially the first time) you should see in your console something like:
+TODO-img
 
+and you should be able to see next web page when entering `http://localhost:8181` to your browser address:
+TODO-img
+
+There you are - your Ad Hoc Jenkins and Co party is ready to go. Use user and pass to log in (currently `admin`, `1234`) and off you go.
+
+Puff!    
  
