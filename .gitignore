@@ -6,3 +6,5 @@ roles/**
 /kk.html
 /post_data
 /post_data.json
+docker-compose.yml
+jenkins-ansible.yml
