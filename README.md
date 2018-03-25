@@ -42,6 +42,14 @@ and you should be able to see next web page when entering `http://localhost:8181
 There you are - your ad hoc Jenkins and Co party is ready to take off. 
 Type in user and pass to log in (currently `admin`, `1234`) and off you go.
 
+You can create a `make_onions` job and have it connected to the onions machine:
+![](documentation/sample_job_conf.png)
+
+Which will serve up some nice onions:
+![](documentation/sample_job.png)
+
+
+
 ### Workflow (Chopsticks-Fly)
 Logic flow starts off docker-compose-template.yml. This is where architecture is defined as well. 
 We use a simple templating mechanism to inject specific values into the templates. This is much simpler than trying to make the different tools involved read off environment variables or configuration files as they don't do that in a uniform way.
