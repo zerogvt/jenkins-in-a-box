@@ -8,9 +8,11 @@ So, the other day while I was very actively focusing in breathing and keeping al
 
 ## Spaceships.
 Its spaceship had gonne through a seriously bumpy area of hyperbunnyway and one of its memory banks popped out and fell on the floor. Now the cat of the ship...someone forgot to feed it. So it promptly ate the bank. Tough luck is that this bank had the software system that powered up ship's fuel cells. The system was a Jenkins server (just a control-freak computer that loves to organise stuff and tell other people what to do), one computer that produced carrots and one more computer producing onions according to Jenkins orders. Carrots and onions where later mixed up and off the ship goes. Now, Bunny had an old rusty spare part but he had to reprogram the exact mixture and that would take a lot of retries. And the thing is that you don't want to feed this engine with the wrong carrot-onion mixture because you're risking tearing space-time fabric and it is not covered by any insurance in the known universe.
+![](documentation/spaceship.png)
 
 ## Enter Simulation
 So the bunny wanted me to build a simulation of this system so that it can safely experiment. The system should be immutable so that every experiment would kick off the exact same point. Also it should be able to run on Bunny's laptop and be relatively easy to scale later on (what if it wanted to add another computer producing tomato juice for the mixture). 
+![](documentation/docker_arch.png)
 
 ## Actors
 ### Jenkins and slaves.
@@ -32,12 +34,20 @@ So...if you want to play around check out this repo and cd into the dir where yo
 ![](documentation/console.png)
 
 and you should be able to see next web page when entering `http://localhost:8181` to your browser address:
+
+
 ![](documentation/jenkins.png)
 
-There you are - your Ad Hoc Jenkins and Co party is ready to go. Use user and pass to log in (currently `admin`, `1234`) and off you go.
+
+There you are - your Ad Hoc Jenkins and Co party is ready to go. 
+Use user and pass to log in (currently `admin`, `1234`) and off you go.
 
 ### Workflow (Chopsticks-Fly)
-TODO
+Logic flow starts off docker-compose-template.yml. There is where architecture is defined as well. 
+We use a simple templating mechanism to inject specific values into the templates. This is much simpler than trying to make the different tools involved read off environment variables or configuration files as they don't do that in a uniform way.
+Master (Jenkins) is blueprinted in Dockerfile_master and in the template-generated jenkins-ansible.yml. Slaves are blueprinted in Dockerfile_node (almost vanilla Ubuntu images so there's no need to bring in the heavy artillery of ansible here).
+Connection to Jenkins is slave initiated via JNLP. Slaves share a volume with Jenkins master where they find JNLP agent thus ensuring that they use the agent that comes with the particular Jenkins version master image was built with. 
+Security is sketchy at best (a lot of information unhashed and persisted on images) but that was not a priority atm (on the roadmap). 
 
 ### TODOs/Future Work:
 * Bunny needs some character development
@@ -46,5 +56,6 @@ TODO
 * Scaling up 
 
 
+![](documentation/puff.png)
 **Puff!**    
  
