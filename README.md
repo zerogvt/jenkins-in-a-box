@@ -36,5 +36,15 @@ TODO-img
 
 There you are - your Ad Hoc Jenkins and Co party is ready to go. Use user and pass to log in (currently `admin`, `1234`) and off you go.
 
-Puff!    
+### Workflow (Chopsticks-Fly)
+TODO
+
+### TODOs/Future Work:
+* Bunny needs some character development
+* Explain templating mechanism
+* Security issues
+* Scaling up 
+
+
+**Puff!**    
  
