@@ -43,10 +43,11 @@ There you are - your ad hoc Jenkins and Co party is ready to take off.
 Type in user and pass to log in (currently `admin`, `1234`) and off you go.
 
 You can create a `make_onions` job and have it connected to the onions machine:
+![](documentation/sample_job.png)
+
+
 ![](documentation/sample_job_conf.png)
 
-Which will serve up some nice onions:
-![](documentation/sample_job.png)
 
 
 
