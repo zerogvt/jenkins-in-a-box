@@ -8,3 +8,4 @@ roles/**
 /post_data.json
 docker-compose.yml
 jenkins-ansible.yml
+slave_*.xml
