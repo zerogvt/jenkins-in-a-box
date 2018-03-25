@@ -24,12 +24,10 @@ USER ${user_name}
 WORKDIR /home/${user_name}
 RUN echo ${slave_name} > my.name && \
     echo "jenkins:${jenkins_port}" > my.jenkins && \
-    echo "${jnlp_user}:${jnlp_pass}" > my.secret && \
-    echo ${time_wait} > my.wait
+    echo "${jnlp_user}:${jnlp_pass}" > my.secret 
     
 # expose 22 so we can ssh in
 EXPOSE 22
 #wait for jenkins machine to warm up - then connect
-CMD sleep $(cat my.wait) && \
-    cp shared-data/remoting-3.18.jar agent.jar && \
-    java -jar agent.jar -jnlpUrl http://$(cat my.jenkins)/computer/$(cat my.name)/slave-agent.jnlp -workDir "/home/jenkins" -jnlpCredentials $(cat my.secret)
+CMD cp shared-data/remoting-3.18.jar agent.jar && \
+    java -jar agent.jar -jnlpUrl http://$(cat my.jenkins)/computer/$(cat my.name)/slave-agent.jnlp -noKeepAlive -workDir "/home/jenkins" -jnlpCredentials $(cat my.secret)

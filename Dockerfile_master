@@ -25,7 +25,7 @@ WORKDIR /tmp/muc_adn
 ADD ${ansible_yml} .
 
 # let ansible do the heavy lifting of installing/setting up jenkins
-RUN ls -la .
+# use role from https://github.com/geerlingguy/ansible-role-jenkins
 RUN ansible-galaxy install geerlingguy.jenkins -p ./roles/ && \
     ansible-galaxy install flyapen.jenkins -p ./roles/ && \
     ansible-playbook ${ansible_yml} -i inventory -c local

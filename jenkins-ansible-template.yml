@@ -9,7 +9,8 @@
     jenkins_admin_password: ${JENKINS_PASS}
     slave_1_name: ${SLAVE_1_NAME}
     slave_2_name: ${SLAVE_2_NAME}
-    jenkins_package_state: latest
+    # next from https://github.com/geerlingguy/ansible-role-jenkins
+    jenkins_package_state: present
   roles:
     - geerlingguy.java
     - geerlingguy.jenkins
