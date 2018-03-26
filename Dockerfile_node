@@ -29,5 +29,6 @@ RUN echo ${slave_name} > my.name && \
 # expose 22 so we can ssh in
 EXPOSE 22
 #wait for jenkins machine to warm up - then connect
-CMD cp shared-data/remoting-3.18.jar agent.jar && \
+CMD agent_path=$(ls -1 shared-data/remoting*) && \
+    cp ${agent_path} agent.jar && \
     java -jar agent.jar -jnlpUrl http://$(cat my.jenkins)/computer/$(cat my.name)/slave-agent.jnlp -workDir "/home/jenkins" -jnlpCredentials $(cat my.secret)
