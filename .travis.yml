@@ -8,4 +8,4 @@ before_install:
   - until /bin/bash build-and-run-me.sh | tee build.out | grep -m 1 "Jenkins is fully up and running"; do sleep 1 ; done
   - cat build.out && echo "[INFO] ENV READY. STARTING TESTS:"
 script:
-  - /bin/bash tests/tests.sh
+  - cd tests && /bin/bash ./tests.sh
