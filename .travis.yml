@@ -1,4 +1,10 @@
 language: bash
+sudo: required
 
+services:
+  - docker
+
+before_install:
+  - /bin/bash build-and-run-me.sh
 script:
-  - bash test.sh
+  - tests/test.sh
