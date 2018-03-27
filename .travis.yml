@@ -7,4 +7,4 @@ services:
 before_install:
   - until /bin/bash build-and-run-me.sh | grep -m 1 "Jenkins is fully up and running"; do sleep 1 ; done
 script:
-  - tests/test.sh
+  - tests/tests.sh
