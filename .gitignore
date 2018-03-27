@@ -1,6 +1,6 @@
 roles/**
 *.retry
-.vagrant/**
+**/.vagrant/**
 /docker-compose.yml
 /jenkins-ansible.yml
 /kk.html
