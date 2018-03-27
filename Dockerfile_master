@@ -18,11 +18,9 @@ ENV PATH $PATH:/tmp/ansible/bin
 ENV ANSIBLE_LIBRARY /tmp/ansible/library
 ENV PYTHONPATH /tmp/ansible/lib:$PYTHON_PATH
 
-# get our build context off our gh repo
-RUN git clone http://github.com/zerogvt/muc_adn.git /tmp/muc_adn
 ADD inventory /etc/ansible/hosts
-WORKDIR /tmp/muc_adn
 ADD ${ansible_yml} .
+ADD inventory .
 
 # let ansible do the heavy lifting of installing/setting up jenkins
 # use role from https://github.com/geerlingguy/ansible-role-jenkins
