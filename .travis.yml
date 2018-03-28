@@ -7,7 +7,7 @@ services:
 before_install:
   - |
     until /bin/bash build-and-run-me.sh | tee build.out | grep -m 1 "INFO: Connected"; do sleep 1 ; done
-  - sleep 10
+  - sleep 20
   - cat build.out && echo "[INFO] ENV READY. STARTING TESTS:"
 script:
   - cd tests && /bin/bash ./tests.sh
