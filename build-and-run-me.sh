@@ -14,14 +14,14 @@ rm -rf nodes
 mkdir nodes
 for SLAVE_X_NAME in "${SLAVES_NAMES[@]}"
 do
-  echo "${SLAVE_X_NAME}"
-  # fix slave's xml config file (that's will live inside jenkins)
+  echo "[INFO] Fixing slave's jenkins xml config file for slave: ${SLAVE_X_NAME}"
   export SLAVE_X_NAME=${SLAVE_X_NAME}
   mkdir nodes/${SLAVE_X_NAME}
   envsubst < "slave-template.xml" > "nodes/${SLAVE_X_NAME}/config.xml";
-  # and add slave's config to docker-compose.yml
+
+  echo "[INFO] Adding slave's config to docker-compose.yml"
   envsubst < "docker-compose-slave-template.yml" >> "docker-compose.yml";
 done
 
-docker-compose build --no-cache
+docker-compose build
 docker-compose up --force-recreate

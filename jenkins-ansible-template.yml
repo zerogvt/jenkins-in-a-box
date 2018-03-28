@@ -15,4 +15,4 @@
   tasks:
     - copy:
         src: nodes
-        dest: /var/lib/jenkins/nodes/
+        dest: /var/lib/jenkins/
