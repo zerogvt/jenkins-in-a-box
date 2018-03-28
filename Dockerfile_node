@@ -7,8 +7,6 @@ ARG slave_name
 ARG jenkins_port
 ARG jnlp_user
 ARG jnlp_pass
-ARG time_wait
-
 
 RUN apt-get -y update && \
 	apt-get -y install openjdk-8-jdk && \
