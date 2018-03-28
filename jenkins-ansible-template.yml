@@ -7,10 +7,12 @@
     jenkins_http_port: ${JENKINS_PORT}
     jenkins_admin_username: ${JENKINS_USER}
     jenkins_admin_password: ${JENKINS_PASS}
-    slave_1_name: ${SLAVE_1_NAME}
-    slave_2_name: ${SLAVE_2_NAME}
     # next from https://github.com/geerlingguy/ansible-role-jenkins
     jenkins_package_state: present
   roles:
     - geerlingguy.java
     - geerlingguy.jenkins
+  tasks:
+    - copy:
+        src: nodes
+        dest: /var/lib/jenkins/

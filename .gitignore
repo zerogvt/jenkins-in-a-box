@@ -9,3 +9,5 @@ roles/**
 docker-compose.yml
 jenkins-ansible.yml
 slave_*.xml
+nodes/**
+

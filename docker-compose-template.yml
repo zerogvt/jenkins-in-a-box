@@ -1,5 +1,11 @@
 version: '3'
 
+networks:
+  bridge:
+
+volumes:
+  shared-data:
+
 services:
   jenkins:
     networks:
@@ -22,43 +28,5 @@ services:
     volumes:
       - shared-data:/var/cache/jenkins/war/WEB-INF/lib
 
-  slave_1:
-    networks:
-      - bridge
-    build: 
-      context: .
-      dockerfile: Dockerfile_node
-      args:
-        jenkins_port: ${JENKINS_PORT}
-        slave_name: ${SLAVE_1_NAME} 
-        jnlp_user: ${JENKINS_USER}
-        jnlp_pass: ${JENKINS_PASS}
-        time_wait: 1
-    image: zerogvt/jenkins_slave:${SLAVE_1_NAME}
-    tty: true
-    volumes:
-      - shared-data:/home/jenkins/shared-data
-
-  slave_2:
-    networks:
-      - bridge
-    build: 
-      context: .
-      dockerfile: Dockerfile_node
-      args:
-        jenkins_port: ${JENKINS_PORT}
-        slave_name: ${SLAVE_2_NAME} 
-        jnlp_user: ${JENKINS_USER}
-        jnlp_pass: ${JENKINS_PASS}
-        time_wait: 10
-    image: zerogvt/jenkins_slave:${SLAVE_2_NAME}
-    tty: true
-    volumes:
-      - shared-data:/home/jenkins/shared-data
-      
-networks:
-  bridge:
-
-volumes:
-  shared-data:
+# slaves templates hereon
 

@@ -1,0 +1,17 @@
+
+  slave_${SLAVE_X_NAME}:
+    networks:
+      - bridge
+    build: 
+      context: .
+      dockerfile: Dockerfile_node
+      args:
+        jenkins_port: ${JENKINS_PORT}
+        slave_name: ${SLAVE_X_NAME} 
+        jnlp_user: ${JENKINS_USER}
+        jnlp_pass: ${JENKINS_PASS}
+        time_wait: 1
+    image: zerogvt/jenkins_slave:${SLAVE_X_NAME}
+    tty: true
+    volumes:
+      - shared-data:/home/jenkins/shared-data
