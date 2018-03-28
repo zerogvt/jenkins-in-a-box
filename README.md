@@ -49,6 +49,8 @@ You can create a `make_onions` job and have it connected to the onions machine:
 ![](documentation/sample_job_conf.png)
 
 
+### Configuration To Allow For More Nodes (Scaling)
+v2.0 onwards you can set the number of the slaves participating in the network via adding names into the array `SLAVES_NAMES` which lives inside `jenkins.env` file. Atm it is set to 3 nodes. Say you want to add one more node called "peas" then edit this file so that the SLAVES_NAMES reads: `SLAVES_NAMES=("carrots" "onions" "tomatoes" "peas")` Easy peasy.
 
 
 ### Workflow (Chopsticks-Fly)
@@ -61,9 +63,9 @@ Security is sketchy at best (a lot of information unhashed and persisted on imag
 
 ### TODOs/Future Work:
 * Bunny needs some character development
-* Explain templating mechanism
+* <s> Explain templating mechanism </s>
 * Security issues
-* Scaling up 
+* <s> Scaling up </s> 
 
 
 ![](documentation/puff.png)
