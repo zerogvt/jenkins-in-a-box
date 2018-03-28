@@ -13,11 +13,11 @@ class Tests(unittest.TestCase):
       data = json.loads(url.read().decode())
       self.assertIsNotNone(data["mode"])
 
-  def test_computers_are_created(self):
+  def test_more_than_master_created(self):
     test_url = "http://localhost:%s/computer/api/json" % self.jenk_port
     with urllib.request.urlopen(test_url) as url:
       data = json.loads(url.read().decode())
-      self.assertEqual(len(data["computer"]), 3)
+      self.assertGreater(len(data["computer"]), 1)
 
   def test_computers_are_connected(self):
     test_url = "http://localhost:%s/computer/api/json" % self.jenk_port
