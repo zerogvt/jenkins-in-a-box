@@ -1,4 +1,5 @@
-# Containerised Continuous Integration
+# Jenkins In A Box (Containerised Continuous Integration System)
+![](documentation/jenkins-in-a-box-s.png)
 ### A proof of concept involving jenkins, ansible, docker and a bunny and its spaceship
 
 (Reading documentation is a bore isn't it? The kind of I-d-rather-try-catching-flies-with-chopsticks bore. Maybe that's because documentation is usually written in the form of shopping list and people don't even read them while shopping...I know, we're hopeless. But I also know that people love to tell and listen to stories. Things with a beginning, middle and end. So, let's try this for a change...)
