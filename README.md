@@ -1,5 +1,6 @@
 # Jenkins In A Box (Containerised Continuous Integration System)
 ![](documentation/jenkins-in-a-box-s.png)
+
 ### A proof of concept involving jenkins, ansible, docker and a bunny and its spaceship
 
 (Reading documentation is a bore isn't it? The kind of I-d-rather-try-catching-flies-with-chopsticks bore. Maybe that's because documentation is usually written in the form of shopping list and people don't even read them while shopping...I know, we're hopeless. But I also know that people love to tell and listen to stories. Things with a beginning, middle and end. So, let's try this for a change...)
@@ -9,10 +10,12 @@ So, the other day while I was very actively focusing in breathing and keeping al
 
 ## Spaceships.
 Its spaceship had gonne through a seriously bumpy area of hyperbunnyway and one of its memory banks popped out and fell on the floor. Now the cat of the ship...someone forgot to feed it. So it promptly ate the bank. Tough luck is that this bank had the software system that powered up ship's fuel cells. The system was a Jenkins server (just a control-freak computer that loves to organise stuff and tell other computers what to do), one computer that produced carrots and one more computer producing onions according to Jenkins orders. Carrots and onions where later mixed up and off the ship went. Now, Bunny had an old rusty spare part but he had to reprogram the exact mixture and that would take a lot of trial and errors. And the thing is that you don't want to feed this engine with the wrong carrot-onion mixture because you're risking tearing space-time fabric and it is not covered by any insurance in the known universe.
+
 ![](documentation/spaceship.png)
 
 ## Enter Simulation
 So the bunny wanted me to build a simulation of this system so that it can safely experiment. The system should be immutable so that every experiment would kick off from the exact same point. Also it should be able to run on Bunny's laptop and be relatively easy to scale later on (what if it wanted to add another computer producing tomato juice for the mixture?). 
+
 ![](documentation/docker_arch.png)
 
 ## Actors
