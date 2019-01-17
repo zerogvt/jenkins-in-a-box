@@ -1,3 +1,6 @@
+
+[![Build Status](https://travis-ci.org/zerogvt/jenkins-in-a-box.svg?branch=master)
+
 # Jenkins In A Box (Containerised Continuous Integration System)
 ![](documentation/jenkins-in-a-box-s.png)
 
